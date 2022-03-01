@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/style.css">
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
     <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
 </head>
 <body>
  <!-- Navbar -->
   <header class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-2">
-    <div class="container px-4 mx-auto flex flex-wrap flex-col mt-8 md:flex-row items-center">
+    <div class="container px-4 mx-auto flex flex-wrap flex-col mt-4 md:flex-row items-center">
     <div>
         <img src="/assets/img/fusionlogo.png" class="h-20 m-8">
     </div>
-      <nav class="md:ml-auto flex flex-wrap items-center text-white text-base justify-center">
+      <nav class="md:ml-auto flex flex-wrap items-center text-white font-bold text-base justify-center">
         <a class="mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300" href="services.html">Services</a>
         <a class="mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300" href="about.html">About</a>
         <a class="mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300" href="contact.html">Contact</a>
@@ -22,15 +23,15 @@
      </header>
 <!-- Main Hero Area -->
  <div class="relative pt-36 pb-36 flex content-center items-center justify-center" style="min-height: 95vh">
- <div class="absolute top-0 w-full h-full bg-center bg-cover p-4" style="background-image: url('assets/img/Hero1.jpg')">
+ <div class="absolute top-0 w-full h-full bg-center bg-cover p-4" style="background-image: url(https://images.unsplash.com/photo-1550345332-09e3ac987658?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Z3ltfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)">
    <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black-600"></span>
  </div>
  <div class="container relative mx-auto">
  <div class="items-center flex flex-wrap">
  <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
  <div>
-   <h1 class="text-white font-semibold text-3xl">Achieve <span class="text-indigo-600">Your</span> Goals</h1>
-   <p class="mt-4 text-white font-bold">If you want to burn fat, build muscle,<br> get stronger and live better <br> you have come to the right place.</p>
+   <h1 class="mt-4 text-white font-semibold text-3xl">Achieve <span class="text-indigo-600">Your</span> Goals</h1>
+   <p class="mt-8 text-white font-bold">If you want to burn fat, build muscle,<br> get stronger and live better <br> you have come to the right place.</p>
    <button class="bg-transparent hover:bg-indigo-600 text-indigo-600 font-semibold hover:text-white p-4 border border-blue-600 hover:border-transparent rounded inline-block mt-5 cursor-pointerhref" type="button" onclick="toggleModal('modal-id')">
      Lets Train
    </button>
@@ -63,8 +64,7 @@
  </div>
  </div>
  </div>
-   <!-- Services -->
-   <!-- Services -->
+      <!-- Services -->
    <section class="bg-gray-300 p-2">
     <div class="container mx-auto px-2">
       <div class="flex flex-wrap justify-center text-center">
@@ -123,15 +123,26 @@
       </script>
 <!-- Instagram Link -->
 <div class='bg-gray-300'>
-  <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-<div class="elfsight-app-08008385-31b3-4b9f-9a7f-1a702a3377a2"></div>
+  <div class="elfsight-app-08008385-31b3-4b9f-9a7f-1a702a3377a2"></div>
 </div>
-<!-- This example requires Tailwind CSS v2.0+ -->
-<footer class="bg-white">
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-      <div class="mt-8 md:mt-0 md:order-1">
-      <p class="text-center text-base text-gray-400">&copy; 2022 F-Web-Dev, Inc. All rights reserved.</p>
-    </div>
+
+   <footer class="bg-gray-300">
+  <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+      <div class="px-5 py-2">
+        <a href="services.html" class="text-base text-gray-500 hover:text-gray-900"> Services </a>
+      </div>
+
+      <div class="px-5 py-2">
+        <a href="about.html" class="text-base text-gray-500 hover:text-gray-900"> About </a>
+      </div>
+
+      <div class="px-5 py-2">
+        <a href="contact.html" class="text-base text-gray-500 hover:text-gray-900"> Contact </a>
+      </div>
+     </nav>
+    
+    <p class="mt-8 text-center text-base text-gray-400">&copy; 2022 F-Web-Dev, Inc. All rights reserved.</p>
   </div>
 </footer>
 
