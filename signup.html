@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzMrinVtFjV7zJa_feNSMaTy33G_cYw6yA801UXXSNsL43T77Aiwyn-wxCVxsoe83I3qA/exec'
+const form = document.forms['sign_up_form']
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  .then(() => alert("Thank you! your form is submitted successfully." ))
+  .then(() => { window.location.reload(); })
+  .catch(error => console.error('Error!', error.message))
+})
+</script>
 </head>
  <header class="bg-black">
   <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
@@ -20,7 +31,7 @@
   </div>  
    </header>
    <body>
-    <form  class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
+    <form method = "post" action="https://script.google.com/macros/s/AKfycbzMrinVtFjV7zJa_feNSMaTy33G_cYw6yA801UXXSNsL43T77Aiwyn-wxCVxsoe83I3qA/exec" name="sign_up_form"class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
       <h1 class="text-xl text-center font-bold underline first-line: leading-7 text-gray-900 mt-4">Exercise Pre-Screening Questionnaire </h1>
       <p class="mt-4 mb-2 text-sm leading-6 text-gray-600">This is to be completed in preparation for physical activity. It is important that you disclose ALL of
         you existing medical conditions so that we/I may determine whether to seek further medical advice
@@ -138,7 +149,7 @@
                 <input id="candidates" name="candidates" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
               </div>
               <div class="text-sm leading-6">
-                <label for="candidates" class="font-medium text-gray-900">Are you currently taking prescribed medication(s) for any condition(s)?</label>
+                <label for="candidates" class="font-medium text-gray-900">Prescribed medication</label>
               </div>
             </div>
 
@@ -182,7 +193,7 @@
             </div>
           </div>
           <div class="col-span-full">
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Any treatment provided: E.g. Physio, Doctor, Rehab?</label>
+            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Treatment provided: E.g. Physio, Doctor, Rehab?</label>
             <div class="mt-2">
               <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <option>Yes</option>
@@ -245,7 +256,7 @@
   </div>
 
   <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I agree</button>
+    <button type="submit" value="submit" id="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I agree</button>
   </div>
 </form>
 </body>
