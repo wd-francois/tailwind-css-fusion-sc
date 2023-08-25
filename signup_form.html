@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
+</head>
+ <header class="bg-black">
+  <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center m-2 md:mb-0" href="index.html">
+    <img src="/assets/img/fusionlogo.png"img>
+    </a>
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center mt-2">
+      <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="index.html">Home</a>
+      <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="services.html">Services</a>
+      <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="contact.html">Contact</a>
+    </nav>
+  </div>  
+   </header>
+   <body>
+    <!-- Form Start -->
+    <form name='submit-to-google-sheet' class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
+        <h1 class="text-xl text-center font-bold underline first-line: leading-7 text-gray-900 mt-4">Exercise Pre-Screening Questionnaire </h1>
+        <p class="mt-4 mb-2 text-sm leading-6 text-gray-600">This is to be completed in preparation for physical activity. It is important that you disclose ALL of
+          you existing medical conditions so that we/I may determine whether to seek further medical advice
+          before commencing an exercise program. This questionnaire does not provide medical advice in any
+          form and does not substitute advice from appropriately qualified professionals.</p>
+        <h2 class="text-base font-bold underline first-line: leading-7 text-gray-900">Personal Information</h2>
+         <div class="mt-2 grid grid-cols-1 gap-x-6 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+            <div class="mt-2">
+              <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+            <div class="mt-2">
+              <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label for="dob" class="block text-sm font-medium leading-6 text-gray-900">Date of Birth</label>
+            <div class="mt-2">
+              <input type="text" name="dob-name" id="dob" autocomplete="dob" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> 
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gender (Optional)</label>
+            <div class="mt-2">
+              <select id="gender" name="gender" autocomplete="gender-type" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+            <div class="mt-2">
+              <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 mb-6 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+      <div class="border-b border-gray-900/10">
+           <fieldset>
+            <legend class="text-base font-bold underline first-line: leading-7 text-gray-900">Medical Conditions</legend>
+            <p class="text-gray-500">Please tick the box below if you have any of the following medical conditions.</p>
+                <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="heart-condition" name="heart-condition" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="heart-condition" class="font-medium text-gray-900">Heart Condition</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="chest-discomfort" name="chest-discomfort" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="chest-discomfort" class="font-medium text-gray-900">Chest discomfort</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="astma" name="astma" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="astma" class="font-medium text-gray-900">Astma</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="diabetic" name="diabetic" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="diabetic" class="font-medium text-gray-900">Diabetic</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Dizziness" name="Dizziness" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Dizziness" class="font-medium text-gray-900">Dizziness, Fainting, Blackouts</label>
+                </div>
+              </div>
+                <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Musculoskeletal Problems" name="Musculoskeletal Problems" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Musculoskeletal Problems" class="font-medium text-gray-900">Musculoskeletal problems</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Pregnant" name="Pregnant" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Pregnant" class="font-medium text-gray-900">Pregnant</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Epilepsy" name="Epilepsy" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Epilepsy" class="font-medium text-gray-900">Epilepsy</label>
+                </div>
+              </div>
+  
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Prescribed Medicine" name="Prescribed Medicine" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Prescribed Medicine" class="font-medium text-gray-900">Prescribed medication</label>
+                </div>
+              </div>
+  
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Smoke" name="Smoke" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Smoke" class="font-medium text-gray-900">Do you smoke?</label>
+                </div>
+              </div>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <input id="Inactive" name="Inactive" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                </div>
+                <div class="text-sm leading-6">
+                  <label for="Inactive" class="font-medium text-gray-900">Injury or Pain</label>
+                </div>
+              </div>
+              <div class="col-span-full mt-2">
+                <label for="further details" class="block text-sm font-medium leading-6 text-gray-900">Please provide further details if you ticked any of the above boxes.</label>
+                <div class="mt-2">
+                  <input id="text" name="furter details" type="text" autocomplete="text" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">What physical activities or sport (if any) do you currently engage in?</label>
+                <div class="mt-2">
+                  <input id="text" name="physical activities" type="text" autocomplete="physical activities" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">Your excercise history?</label>
+                <div class="mt-2">
+                  <input id="text" name="exercise history" type="text" autocomplete="exercise history" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">Have you ever trained with a personal trainer / coach?</label>
+                <div class="mt-2">
+                  <input id="trained with pt" name="trained with pt" type="text" autocomplete="trained with pt" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div> 
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">What are your fitness goals?</label>
+                <div class="mt-2">
+                  <input id="goals" name="goals" type="text" autocomplete="goals" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">What timeframe would you like to achieve this in?</label>
+                <div class="mt-2">
+                  <input id="timeframe" name="timeframe" type="text" autocomplete="timeframe" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">How important is this to you on a scale of 1 to 10?</label>
+                <div class="mt-2">
+                  <input id="important" name="important" type="important" autocomplete="important" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div> 
+              <div class="col-span-full">
+                <label for="text" class="block text-sm font-medium leading-6 text-gray-900">How many days per week can set aside to achieve your goals?</label>
+                <div class="mt-2">
+                  <input id="days pw" name="days pw" type="days pw" autocomplete="days pw" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <h1  class="text-base font-bold underline first-line: leading-7 text-gray-900 mt-2">Agreement</h1>
+              <p class="mt-2 mb-2 text-sm leading-6 text-gray-600">I believe that to the best of my knowledge, all of the information I have supplied is correct.   In the case that my medical condition changes over the course of my training I will inform my trainer and fill out a new exercise prescreening questionnaire.  I understand that participating in physical activity and exercise can carry a risk, and I accept all responsibility for that risk.
+                I understand that due care will be undertaken by my Fusion Strength & Conditioning at all times.
+                </p>
+              </div>
+         </div>
+      </div>
+    </div>
+  
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button type="submit" value="submit" id="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I agree</button>
+    </div>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbybElWbJez0INVMFPfUExCEcC5WESFUWonYlY_Y_eRnhgXHt1LZmGpzd1XLZDIAQyVH/exec'
+    const form = document.forms['submit-to-google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
+
