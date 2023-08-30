@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
-</head>
+    <script src="https://cdn.tailwindcss.com"></script>
+ </head>
  <header class="bg-black">
   <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
     <a class="flex title-font font-medium items-center m-2 md:mb-0" href="index.html">
@@ -21,7 +21,9 @@
    </header>
    <body>
     <!-- Form Start -->
-    <form name='submit-to-google-sheet' class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
+    <form method="POST" action="https://formsubmit.co/pt.fusionsc@gmail.com" method="POST" class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
+      <input type="hidden" name="_next" value="https:fusionsc/successform.html">
+      <input type="hidden" name="_captcha" value="false">
         <h1 class="text-xl text-center font-bold underline first-line: leading-7 text-gray-900 mt-4">Exercise Pre-Screening Questionnaire </h1>
         <p class="mt-4 mb-2 text-sm leading-6 text-gray-600">This is to be completed in preparation for physical activity. It is important that you disclose ALL of
           you existing medical conditions so that we/I may determine whether to seek further medical advice
@@ -32,35 +34,36 @@
           <div class="sm:col-span-3">
             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
             <div class="mt-2">
-              <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input type="text" placeholder="first-name" name="first-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
           </div>
           <div class="sm:col-span-3">
             <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
             <div class="mt-2">
-              <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input type="text" placeholder="last-name" name="last-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
           </div>
           <div class="sm:col-span-3">
             <label for="dob" class="block text-sm font-medium leading-6 text-gray-900">Date of Birth</label>
             <div class="mt-2">
-              <input type="text" name="dob-name" id="dob" autocomplete="dob" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> 
+              <input type="date" placeholder="date of birth" name="date-of-birth" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> 
             </div>
           </div>
           <div class="sm:col-span-3">
-            <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gender (Optional)</label>
+            <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gender</label>
             <div class="mt-2">
-              <select id="gender" name="gender" autocomplete="gender-type" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                <option>Female</option>
-                <option>Male</option>
-                <option>Other</option>
+              <select id="gender" name="gender" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Male">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
               </select>
             </div>
           </div>
           <div class="col-span-full">
             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
             <div class="mt-2">
-              <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 mb-6 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              <input id="email" placeholder="email" type="email" id="email" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 mb-6 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
           </div>
         </div>
@@ -108,14 +111,6 @@
                   <label for="Dizziness" class="font-medium text-gray-900">Dizziness, Fainting, Blackouts</label>
                 </div>
               </div>
-                <div class="relative flex gap-x-3">
-                <div class="flex h-6 items-center">
-                  <input id="Musculoskeletal Problems" name="Musculoskeletal Problems" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                </div>
-                <div class="text-sm leading-6">
-                  <label for="Musculoskeletal Problems" class="font-medium text-gray-900">Musculoskeletal problems</label>
-                </div>
-              </div>
               <div class="relative flex gap-x-3">
                 <div class="flex h-6 items-center">
                   <input id="Pregnant" name="Pregnant" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
@@ -159,7 +154,7 @@
                 </div>
               </div>
               <div class="col-span-full mt-2">
-                <label for="further details" class="block text-sm font-medium leading-6 text-gray-900">Please provide further details if you ticked any of the above boxes.</label>
+                <label for="further details" class="block text-sm font-medium leading-6 text-gray-900">Please provide further details if you ticked any of the above boxes or if there's any other medical condition that might infuence your exercise program.</label>
                 <div class="mt-2">
                   <input id="text" name="furter details" type="text" autocomplete="text" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
@@ -218,17 +213,6 @@
     <div class="mt-6 flex items-center justify-end gap-x-6">
       <button type="submit" value="submit" id="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I agree</button>
     </div>
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbybElWbJez0INVMFPfUExCEcC5WESFUWonYlY_Y_eRnhgXHt1LZmGpzd1XLZDIAQyVH/exec'
-    const form = document.forms['submit-to-google-sheet']
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
-</body>
+    </body>
 </html>
 
