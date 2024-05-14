@@ -7,30 +7,32 @@
     <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
  </head>
+ <header class="bg-black">
+  <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center m-2 md:mb-0" href="index.html">
+    <img src="/assets/img/fusionlogo.png"img>
+    </a>
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center mt-2">
+      <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="index.html">Home</a>
+      <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="services.html">Services</a>
+      <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="contact.html">Contact</a>
+    </nav>
+  </div>  
+   </header>
    <body>
-    <header class="bg-black">
-      <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
-        <a class="flex title-font font-medium items-center m-2 md:mb-0" href="index.html">
-        <img src="/assets/img/fusionlogo.png"img>
-        </a>
-        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center mt-2">
-          <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="index.html">Home</a>
-          <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="services.html">Services</a>
-          <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="contact.html">Contact</a>
-        </nav>
-      </div>  
-       </header>
     <!-- Form Start -->
-    <form id="form" method="POST" class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
-         <h1 class="text-xl text-center font-bold underline first-line: leading-7 text-gray-900 mt-4">Exercise Pre-Screening Questionnaire </h1>
-        <p class="mt-4 mb-2 text-sm leading-6 text-gray-600">Ths is to be completed in preparation for physical activity. It is important that you disclose ALL of
+    <form method="POST" action="https://formsubmit.co/pt.fusionsc@gmail.com" method="POST" class="bg-white mx-auto max-w-7xl px-6 lg:px-8 py-4 sm:py-2">
+      <input type="hidden" name="_next" value="https://fusion-sc.com/successform">
+      <input type="hidden" name="_captcha" value="false">
+        <h1 class="text-xl text-center font-bold underline first-line: leading-7 text-gray-900 mt-4">Exercise Pre-Screening Questionnaire </h1>
+        <p class="mt-4 mb-2 text-sm leading-6 text-gray-600">This is to be completed in preparation for physical activity. It is important that you disclose ALL of
           you existing medical conditions so that we/I may determine whether to seek further medical advice
           before commencing an exercise program. This questionnaire does not provide medical advice in any
           form and does not substitute advice from appropriately qualified professionals.</p>
         <h2 class="text-base font-bold underline first-line: leading-7 text-gray-900">Personal Information</h2>
          <div class="mt-2 grid grid-cols-1 gap-x-6 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
             <div class="mt-2">
               <input type="text" name="first-name" class="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
@@ -65,7 +67,7 @@
             </div>
           </div>
         </div>
-      <!-- <div class="border-b border-gray-900/10">
+      <div class="border-b border-gray-900/10">
            <fieldset>
             <legend class="text-base font-bold underline first-line: leading-7 text-gray-900">Medical Conditions</legend>
             <p class="text-gray-500">Please tick the box below if you have any of the following medical conditions.</p>
@@ -227,75 +229,14 @@
               <p class="mt-2 mb-2 text-sm leading-6 text-gray-600">I believe that to the best of my knowledge, all of the information I have supplied is correct.   In the case that my medical condition changes over the course of my training I will inform my trainer and fill out a new exercise prescreening questionnaire.  I understand that participating in physical activity and exercise can carry a risk, and I accept all responsibility for that risk.
                 I understand that due care will be undertaken by my Fusion Strength & Conditioning at all times.
                 </p>
-              </div> -->
+              </div>
          </div>
       </div>
     </div>
   
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="submit" id="submit-button" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I agree</button>
+      <button type="submit" value="submit" id="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I agree</button>
     </div>
-  </form>
-    <script>
-      document.getElementById("form").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        document.getElementById("message").textContent = "Submitting..";
-        document.getElementById("message").style.display = "block";
-        document.getElementById("submit-button").disabled = true;
-
-        // Collect the form data
-        var formData = new FormData(this);
-        var keyValuePairs = [];
-        for (var pair of formData.entries()) {
-          keyValuePairs.push(pair[0] + "=" + pair[1]);
-        }
-
-        var formDataString = keyValuePairs.join("&");
-
-        // Send a POST request to your Google Apps Script
-        fetch(
-          "https://script.google.com/macros/s/AKfycbwU8lnPGjrB-hIkK0oAij4m5HGG8BKbr15bI-7APgnu6-JiAV7BsBmnhcY6eiIJVobtRw/exec",
-          {
-            redirect: "follow",
-            method: "POST",
-            body: formDataString,
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8",
-            },
-          }
-        )
-          .then(function (response) {
-            // Check if the request was successful
-            if (response) {
-              return response; // Assuming your script returns JSON response
-            } else {
-              throw new Error("Failed to submit the form.");
-            }
-          })
-          .then(function (data) {
-            // Display a success message
-            document.getElementById("message").textContent =
-              "Data submitted successfully!";
-            document.getElementById("message").style.display = "block";
-            document.getElementById("message").style.backgroundColor = "green";
-            document.getElementById("message").style.color = "beige";
-            document.getElementById("submit-button").disabled = false;
-            document.getElementById("form").reset();
-
-            setTimeout(function () {
-              document.getElementById("message").textContent = "";
-              document.getElementById("message").style.display = "none";
-            }, 2600);
-          })
-          .catch(function (error) {
-            // Handle errors, you can display an error message here
-            console.error(error);
-            document.getElementById("message").textContent =
-              "An error occurred while submitting the form.";
-            document.getElementById("message").style.display = "block";
-          });
-      });
-    </script>
     </body>
 </html>
 
