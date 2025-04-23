@@ -24,76 +24,40 @@
         </div>
     </header>
     
-    <div class="relative w-full h-screen bg-gray-900">
-      <!-- Hero Background Image -->
-      <div 
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-        style="background-image: url('https://images.unsplash.com/photo-1550345332-09e3ac987658?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-      </div>
-    
-      <!-- Overlay to improve readability -->
-      <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-    
-      <!-- Hero Content -->
-      <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6">
-        <h1 class="text-4xl md:text-6xl font-bold">Your Strongest Self Starts Here</h1>
-        <p class="text-lg md:text-xl mt-4">Personalized training built around your body, your goals, and your journey to stronger, fitter, healthier living.</p>
-        <a href="#" onclick="toggleModal('modal-id')" class="mt-6 px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-lg font-semibold">
-            Book Your Free Session
-          </a>
-          
-      </div>
+   <!-- Hero Section with Added Call Button -->
+<div class="relative w-full h-screen bg-gray-900">
+    <!-- Hero Background Image -->
+    <div 
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+      style="background-image: url('https://images.unsplash.com/photo-1550345332-09e3ac987658?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
     </div>
-    
-    <!-- Modal Form: Book Your Free Session -->
-<div id="modal-id" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
-    <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8 relative">
-      <button onclick="toggleModal('modal-id')" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
+  
+    <!-- Overlay to improve readability -->
+    <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+  
+    <!-- Hero Content -->
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6">
+      <h1 class="text-4xl md:text-6xl font-bold">Your Strongest Self Starts Here</h1>
+      <p class="text-lg md:text-xl mt-4">Personalized training built around your body, your goals, and your journey to stronger, fitter, healthier living.</p>
       
-      <h2 class="text-2xl font-bold mb-4 text-center text-gray-900">Book Your Free Session</h2>
-      <p class="text-sm text-gray-600 text-center mb-6">Tell us a bit about you, and we’ll get back to you within 24 hours.</p>
-      
-      <form name="free-session" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="free-session" />
+      <!-- Button Container -->
+      <div class="flex flex-col sm:flex-row gap-4 mt-6">
+        <a href="#" onclick="toggleModal('modal-id')" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg text-lg font-semibold">
+          Book Your Free Session
+        </a>
         
-        <div class="mb-4">
-          <label for="name" class="block text-gray-700 text-sm font-medium mb-1">Name</label>
-          <input type="text" id="name" name="name" required
-            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-  
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 text-sm font-medium mb-1">Email</label>
-          <input type="email" id="email" name="email" required
-            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-  
-        <div class="mb-4">
-          <label for="goal" class="block text-gray-700 text-sm font-medium mb-1">What’s your main goal?</label>
-          <input type="text" id="goal" name="goal"
-            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., weight loss, muscle gain, mobility...">
-        </div>
-  
-        <div class="mb-6">
-          <label for="availability" class="block text-gray-700 text-sm font-medium mb-1">Preferred Training Time</label>
-          <input type="text" id="availability" name="availability"
-            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., mornings, evenings, weekends...">
-        </div>
-  
-        <button type="submit"
-          class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
-          Book Now
-        </button>
-      </form>
+        <!-- Added Call Button -->
+        <a href="tel:0416423136" class="px-6 py-3 bg-transparent border-2 border-white hover:bg-white hover:bg-opacity-20 rounded-lg text-lg font-semibold transition">
+          <div class="flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            Call Now
+          </div>
+        </a>
+      </div>
     </div>
   </div>
-  
-  <script>
-    function toggleModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.toggle('hidden');
-    }
-  </script>
   
     <!-- Services Section -->
     <section class="bg-gray-300 p-2">
