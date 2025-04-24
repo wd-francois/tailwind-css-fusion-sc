@@ -59,7 +59,7 @@
     </div>
 </div>
 <!-- Modal Form: Book Your Free Session -->
-<div id="modal-id" class="fixed inset-0 z-50 bg-black bg-opacity-60 justify-center items-center hidden">
+<div id="modal-id" class="fixed inset-0 z-50 bg-black bg-opacity-60 hidden flex items-center justify-center">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8 relative mx-4">
         <button onclick="toggleModal('modal-id')" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
 
@@ -325,15 +325,5 @@
             </p>
         </div>
     </footer>
-    
-    <!-- Modal Script -->
-    <script type="text/javascript">
-        function toggleModal(modalID){
-            document.getElementById(modalID).classList.toggle("hidden");
-            document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-            document.getElementById(modalID).classList.toggle("flex");
-            document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-        }
-    </script>
 </body>
 </html>
