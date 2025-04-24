@@ -59,7 +59,7 @@
     </div>
 </div>
 <!-- Modal Form: Book Your Free Session -->
-<div id="modal-id" class="fixed inset-0 z-50 bg-black bg-opacity-60 hidden flex items-center justify-center">
+<div id="modal-id" class="fixed inset-0 z-50 bg-black bg-opacity-60 hidden">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8 relative mx-4">
         <button onclick="toggleModal('modal-id')" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
 
@@ -122,11 +122,17 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     // Improved modal toggle function
     function toggleModal(modalID) {
         const modal = document.getElementById(modalID);
-        modal.classList.toggle('hidden'); // Toggle visibility using hidden
+        if (modal.classList.contains('hidden')) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex', 'items-center', 'justify-center');
+        } else {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex', 'items-center', 'justify-center');
+        }
         document.body.classList.toggle('overflow-hidden');
     }
 
