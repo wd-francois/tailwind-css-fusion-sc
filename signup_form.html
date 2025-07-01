@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -22,6 +23,52 @@
   </div>  
  </header>
  <body class="bg-gray-50">
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-lg shadow-xl">
+        <div class="flex items-center space-x-3">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+          <span class="text-gray-700">Submitting your form...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-lg shadow-xl max-w-md mx-4">
+        <div class="text-center">
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Form Submitted Successfully!</h3>
+          <p class="text-sm text-gray-500 mb-4">Thank you for completing the questionnaire. We'll be in touch soon.</p>
+          <button onclick="closeSuccessMessage()" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-lg shadow-xl max-w-md mx-4">
+        <div class="text-center">
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+            <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Submission Failed</h3>
+          <p class="text-sm text-gray-500 mb-4">There was an error submitting your form. Please try again.</p>
+          <button onclick="closeErrorMessage()" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Form Start -->
     <div class="min-h-screen py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto">
@@ -32,10 +79,7 @@
               <p class="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600">Please complete this form to help us understand your fitness needs and medical history</p>
             </div>
 
-            <form method="POST" action="https://formsubmit.co/pt.fusionsc@gmail.com" class="space-y-6 sm:space-y-8">
-              <input type="hidden" name="_next" value="https://fusion-sc.com/successform">
-              <input type="hidden" name="_captcha" value="false">
-
+            <form id="questionnaireForm" class="space-y-6 sm:space-y-8">
               <!-- Disclaimer -->
               <div class="bg-red-50 border-l-4 border-red-500 p-4 sm:p-6 mb-6 sm:mb-8 rounded-lg">
                 <div class="flex items-start">
@@ -48,6 +92,8 @@
                     <h3 class="text-base sm:text-lg font-semibold text-red-800 mb-1 sm:mb-2">Important Medical Disclaimer</h3>
                     <div class="text-sm sm:text-base text-red-700">
                       <p class="mb-2">This questionnaire is designed to help us understand your medical history and fitness needs. It is not a substitute for professional medical advice.</p>
+                      <p class="mb-2">Please disclose ALL existing medical conditions to ensure your safety during physical activity.</p>
+                      <p class="font-medium">If you have any concerns about your health or fitness, please consult with your healthcare provider before starting any exercise program.</p>
                     </div>
                   </div>
                 </div>
@@ -60,28 +106,28 @@
                   <div class="sm:col-span-3">
                     <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First name</label>
                     <div class="mt-1">
-                      <input type="text" name="first-name" id="first-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400" placeholder="Enter your first name">
+                      <input type="text" name="first-name" id="first-name" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400" placeholder="Enter your first name">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last name</label>
                     <div class="mt-1">
-                      <input type="text" name="last-name" id="last-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400" placeholder="Enter your last name">
+                      <input type="text" name="last-name" id="last-name" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400" placeholder="Enter your last name">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
                     <div class="mt-1">
-                      <input type="date" name="date-of-birth" id="dob" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400">
+                      <input type="date" name="date-of-birth" id="dob" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400">
                     </div>
                   </div>
 
                   <div class="sm:col-span-3">
                     <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
                     <div class="mt-1">
-                      <select id="gender" name="gender" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400">
+                      <select id="gender" name="gender" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400">
                         <option value="" disabled selected>Select your gender</option>
                         <option value="Female">Female</option>
                         <option value="Male">Male</option>
@@ -94,7 +140,7 @@
                   <div class="col-span-full">
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email address</label>
                     <div class="mt-1">
-                      <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400" placeholder="Enter your email address">
+                      <input type="email" name="email" id="email" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base h-10 px-4 placeholder-gray-400" placeholder="Enter your email address">
                     </div>
                   </div>
                 </div>
@@ -297,6 +343,92 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // Replace this URL with your Google Apps Script web app URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw2vcX-BpErVkkHYim7MV-0AuPDjuvCRAapFe7Ka3U46Puhy7fgogkwUvuSH90elDgFKw/exec';
+      
+      document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading overlay
+        document.getElementById('loadingOverlay').classList.remove('hidden');
+        
+        // Collect form data
+        const formData = new FormData(this);
+        const data = {};
+        
+        // Handle regular form fields
+        for (let [key, value] of formData.entries()) {
+          if (data[key]) {
+            // If key already exists, make it an array
+            if (Array.isArray(data[key])) {
+              data[key].push(value);
+            } else {
+              data[key] = [data[key], value];
+            }
+          } else {
+            data[key] = value;
+          }
+        }
+        
+        // Handle checkboxes specifically
+        const checkboxes = this.querySelectorAll('input[type="checkbox"]');
+        const checkedConditions = [];
+        
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked && checkbox.name !== 'agreement') {
+            checkedConditions.push(checkbox.name);
+          }
+        });
+        
+        data['medical-conditions'] = checkedConditions.join(', ');
+        data['submission-date'] = new Date().toISOString();
+        
+        // Send data to Google Sheets
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(result => {
+          // Hide loading overlay
+          document.getElementById('loadingOverlay').classList.add('hidden');
+          
+          if (result.status === 'success') {
+            // Show success message
+            document.getElementById('successMessage').classList.remove('hidden');
+            // Reset form
+            this.reset();
+          } else {
+            throw new Error(result.message || 'Unknown error');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Hide loading overlay
+          document.getElementById('loadingOverlay').classList.add('hidden');
+          // Show error message
+          document.getElementById('errorMessage').classList.remove('hidden');
+        });
+      });
+      
+      function closeSuccessMessage() {
+        document.getElementById('successMessage').classList.add('hidden');
+      }
+      
+      function closeErrorMessage() {
+        document.getElementById('errorMessage').classList.add('hidden');
+      }
+    </script>
  </body>
 </html>
 
