@@ -58,6 +58,93 @@
       </div>
     </div>
 </div>
+
+<!-- Testimonial Carousel -->
+<section style="background-color:#f5f5f5; padding:50px 20px; text-align:center; font-family:'Montserrat', sans-serif;">
+  <h2 style="font-size:2em; margin-bottom:10px; color:#000;">What Our Clients Say</h2>
+  <p style="color:#555; max-width:600px; margin:0 auto 40px; font-size:1rem;">
+    Real results. Real people. Here’s what clients have to say about training with Fusion Strength & Conditioning.
+  </p>
+
+  <div class="testimonial-carousel" style="max-width:800px; margin:auto; position:relative; overflow:hidden;">
+    <div class="testimonial-track" style="display:flex; transition:transform 0.5s ease-in-out;">
+      
+      <!-- Testimonial Card -->
+      <div class="testimonial-card" style="flex:0 0 100%; padding:20px;">
+        <div style="background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+          <p style="font-style:italic; color:#333; line-height:1.6;">"I’d highly recommend him to anyone wanting to either reconnect with training or start new."</p>
+          <h4 style="margin-top:15px; color:#000; font-weight:600;">Alex</h4>
+          <p style="color:#ff7f27; font-size:1.2rem;">★★★★★</p>
+        </div>
+      </div>
+
+      <!-- Testimonial Card -->
+      <div class="testimonial-card" style="flex:0 0 100%; padding:20px;">
+        <div style="background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+          <p style="font-style:italic; color:#333; line-height:1.6;">"I can highly recommend his personal programs, fitness knowledge and expertise."</p>
+          <h4 style="margin-top:15px; color:#000; font-weight:600;">Linda </h4>
+          <p style="color:#ff7f27; font-size:1.2rem;">★★★★★</p>
+        </div>
+      </div>
+
+      <!-- Testimonial Card -->
+      <div class="testimonial-card" style="flex:0 0 100%; padding:20px;">
+        <div style="background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+          <p style="font-style:italic; color:#333; line-height:1.6;">"Francois training methods aren’t invasive and he customised his approach to my needs. I was able to build a great foundation while with him, after I hadn’t gone to the gym for years prior."</p>
+          <h4 style="margin-top:15px; color:#000; font-weight:600;">Rick</h4>
+          <p style="color:#ff7f27; font-size:1.2rem;">★★★★★</p>
+        </div>
+      </div>
+
+       <!-- Testimonial Card -->
+      <div class="testimonial-card" style="flex:0 0 100%; padding:20px;">
+        <div style="background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+          <p style="font-style:italic; color:#333; line-height:1.6;">"I was a total newbie when I started and he met me where I was, helping me to work on my form, and understand what I was doing and why."</p>
+          <h4 style="margin-top:15px; color:#000; font-weight:600;">Damian</h4>
+          <p style="color:#ff7f27; font-size:1.2rem;">★★★★★</p>
+        </div>
+      </div>
+ <!-- Testimonial Card -->
+      <div class="testimonial-card" style="flex:0 0 100%; padding:20px;">
+        <div style="background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+          <p style="font-style:italic; color:#333; line-height:1.6;">"If you’re serious about getting towards your fitness goals, Fusion Strength is the place."</p>
+          <h4 style="margin-top:15px; color:#000; font-weight:600;">Remco</h4>
+          <p style="color:#ff7f27; font-size:1.2rem;">★★★★★</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    </div>
+  </div>
+  
+
+  <!-- Carousel Buttons -->
+  <div style="margin-top:20px;">
+    <button onclick="moveCarousel(-1)" style="padding:10px 16px; border:none; background:#000; color:#fff; border-radius:6px; cursor:pointer; font-family:'Montserrat', sans-serif;">&#10094; Prev</button>
+    <button onclick="moveCarousel(1)" style="padding:10px 16px; border:none; background:#000; color:#fff; border-radius:6px; cursor:pointer; font-family:'Montserrat', sans-serif;">Next &#10095;</button>
+  </div>
+</section>
+
+<script>
+let currentSlide = 0;
+const track = document.querySelector('.testimonial-track');
+const slides = document.querySelectorAll('.testimonial-card');
+const totalSlides = slides.length;
+
+function moveCarousel(direction) {
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+// Auto-slide every 6 seconds
+setInterval(() => {
+  moveCarousel(1);
+}, 6000);
+</script>
+
+</section>
+
 <!-- Modal Form: Book Your Free Session -->
 <div id="modal-id" class="fixed inset-0 z-50 bg-black bg-opacity-60 hidden">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8 relative mx-4">
@@ -327,7 +414,7 @@
                 </a>
             </div>
             <p class="mt-8 text-base leading-6 text-center text-gray-400">
-                © 2022 F-Web-Dev, Inc. All rights reserved.
+                © 2025 F-Web-Dev, Inc. All rights reserved.
             </p>
         </div>
     </footer>
