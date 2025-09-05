@@ -25,7 +25,7 @@
 
 <body class="bg-gray-50">
     <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center hidden">
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-6 rounded-lg shadow-xl">
             <div class="flex items-center space-x-3">
                 <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
@@ -35,7 +35,7 @@
     </div>
 
     <!-- Success Message -->
-    <div id="successMessage" class="fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center hidden">
+    <div id="successMessage" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-6 rounded-lg shadow-xl max-w-md mx-4">
             <div class="text-center">
                 <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Error Message -->
-    <div id="errorMessage" class="fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center hidden">
+    <div id="errorMessage" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white p-6 rounded-lg shadow-xl max-w-md mx-4">
             <div class="text-center">
                 <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Dashboard Modal -->
-    <div id="dashboardModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center hidden">
+    <div id="dashboardModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-xl max-w-6xl w-full mx-4 max-h-screen overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                 <h2 class="text-xl font-bold text-gray-900">Client Submissions Dashboard</h2>
@@ -436,10 +436,10 @@
                 if (error) {
                     throw error;
                 }
+                
                 // Hide loading and show success
                 document.getElementById('loadingOverlay').classList.add('hidden');
                 document.getElementById('successMessage').classList.remove('hidden');
-                document.getElementById('successMessage').classList.add('flex');
                 
                 // Reset form
                 e.target.reset();
@@ -451,7 +451,6 @@
                 document.getElementById('loadingOverlay').classList.add('hidden');
                 document.getElementById('errorText').textContent = error.message || 'There was an error submitting your form. Please try again.';
                 document.getElementById('errorMessage').classList.remove('hidden');
-                document.getElementById('errorMessage').classList.add('flex');
             }
         });
 
@@ -459,21 +458,17 @@
         function closeSuccessMessage() {
             document.getElementById('successMessage').classList.add('hidden');
         }
+
         function closeErrorMessage() {
             document.getElementById('errorMessage').classList.add('hidden');
-            document.getElementById('errorMessage').classList.remove('flex');
         }
 
         function showDashboard() {
-            const modal = document.getElementById('dashboardModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            document.getElementById('dashboardModal').classList.remove('hidden');
             loadDashboardData();
-        function closeDashboard() {
-            const modal = document.getElementById('dashboardModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
         }
+
+        function closeDashboard() {
             document.getElementById('dashboardModal').classList.add('hidden');
         }
 
@@ -702,7 +697,7 @@
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             // Check if Supabase is configured
-            if (SUPABASE_URL.includes('https://gkskrzhfnsohtsjrnyxd.supabase.co') || SUPABASE_ANON_KEY.includes('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdrc2tyemhmbnNvaHRzanJueXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5Nzg0MTQsImV4cCI6MjA3MjU1NDQxNH0.gzaDPeFzIBu8H7b7-DRcCjn-wyk5nctHsS-sfVYkxaY')) {
+            if (SUPABASE_URL.includes('YOUR_PROJECT') || SUPABASE_ANON_KEY.includes('YOUR_ANON_KEY')) {
                 console.warn('Supabase not configured. Please update the SUPABASE_URL and SUPABASE_ANON_KEY variables.');
                 
                 // Show configuration message
@@ -733,6 +728,5 @@
     </style>
 </body>
 </html>
-
 
 
