@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.38.0/umd/index.min.js"></script>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <div id="status">Testing connection...</div>
+    <button onclick="testInsert()">Test Database Insert</button>
+    <div id="result"></div>
+
+    <script>
+        // Your Supabase credentials
+        const SUPABASE_URL = 'https://gkskrzhfnsohtsjrnyxd.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdrc2tyemhmbnNvaHRzanJueXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5Nzg0MTQsImV4cCI6MjA3MjU1NDQxNH0.gzaDPeFzIBu8H7b7-DRcCjn-wyk5nctHsS-sfVYkxaY';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Test connection
+        async function testConnection() {
+            try {
+                const { data, error } = await supabase
+                    .from('client_questionnaires')
+                    .select('count')
+                    .limit(1);
+                
+                if (error) {
+                    document.getElementById('status').innerHTML = '❌ Connection failed: ' + error.message;
+                    console.error('Supabase error:', error);
+                } else {
+                    document.getElementById('status').innerHTML = '✅ Connection successful!';
+                }
+            } catch (err) {
+                document.getElementById('status').innerHTML = '❌ Connection failed: ' + err.message;
+                console.error('Connection error:', err);
+            }
+        }
+
+        // Test insert
+        async function testInsert() {
+            try {
+                const testData = {
+                    first_name: 'Test',
+                    last_name: 'User',
+                    date_of_birth: '1990-01-01',
+                    gender: 'Other',
+                    email: 'test@example.com',
+                    medical_conditions: {},
+                    medical_details: '',
+                    fitness_level: 5,
+                    current_activities: 'Testing',
+                    exercise_history: 'Testing',
+                    trainer_experience: 'Testing',
+                    goals: 'Testing',
+                    timeframe: 'Testing',
+                    importance: 5,
+                    agreement_accepted: true,
+                    submitted_at: new Date().toISOString()
+                };
+
+                const { data, error } = await supabase
+                    .from('client_questionnaires')
+                    .insert([testData]);
+
+                if (error) {
+                    document.getElementById('result').innerHTML = '❌ Insert failed: ' + error.message;
+                    console.error('Insert error:', error);
+                } else {
+                    document.getElementById('result').innerHTML = '✅ Insert successful! Data: ' + JSON.stringify(data);
+                }
+            } catch (err) {
+                document.getElementById('result').innerHTML = '❌ Insert failed: ' + err.message;
+                console.error('Insert error:', err);
+            }
+        }
+
+        // Run connection test on page load
+        testConnection();
+    </script>
+</body>
+</html>

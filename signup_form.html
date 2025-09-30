@@ -7,12 +7,12 @@
     <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Supabase JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.38.0/umd/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <header class="bg-black">
     <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
         <a class="flex title-font font-medium items-center m-2 md:mb-0" href="index.html">
-            <img src="/assets/img/fusionlogo.png" alt="Fusion Logo">
+            <img src="assets/img/fusionlogo.png" alt="Fusion Logo">
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center mt-2">
             <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="index.html">Home</a>
@@ -373,7 +373,7 @@
         const SUPABASE_URL = 'https://gkskrzhfnsohtsjrnyxd.supabase.co'; // Your actual Supabase URL
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdrc2tyemhmbnNvaHRzanJueXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5Nzg0MTQsImV4cCI6MjA3MjU1NDQxNH0.gzaDPeFzIBu8H7b7-DRcCjn-wyk5nctHsS-sfVYkxaY'; // Your actual anon key
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // Form submission handler
         document.getElementById('questionnaireForm').addEventListener('submit', async (e) => {
@@ -429,7 +429,7 @@
                 };
                 
                 // Insert data into Supabase
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('client_questionnaires')
                     .insert([submissionData]);
                 
@@ -479,7 +479,7 @@
             
             try {
                 // Fetch all submissions from Supabase
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('client_questionnaires')
                     .select('*')
                     .order('submitted_at', { ascending: false });
