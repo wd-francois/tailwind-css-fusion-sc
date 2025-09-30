@@ -70,16 +70,135 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-900">Dashboard Access</h2>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <label for="dashboardPassword" class="block text-sm font-medium text-gray-700 mb-2">Enter Dashboard Password</label>
+                    <input type="password" id="dashboardPassword" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2" placeholder="Enter password">
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button onclick="closeLoginModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md">
+                        Cancel
+                    </button>
+                    <button onclick="authenticateDashboard()" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md">
+                        Access Dashboard
+                    </button>
+                </div>
+                <div id="loginError" class="mt-3 text-sm text-red-600 hidden">
+                    Incorrect password. Please try again.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Client Modal -->
+    <div id="editClientModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-900">Edit Client Information</h2>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6m0 0L6 6m12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="editClientForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Personal Information -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Personal Information</h3>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" id="editFirstName" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" id="editLastName" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="editEmail" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                <input type="date" id="editDateOfBirth" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                                <select id="editGender" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2" required>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Fitness Information -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Fitness Information</h3>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Fitness Level (1-10)</label>
+                                <input type="number" id="editFitnessLevel" min="1" max="10" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Current Activities</label>
+                                <textarea id="editCurrentActivities" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Exercise History</label>
+                                <textarea id="editExerciseHistory" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Goals</label>
+                                <textarea id="editGoals" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medical Information -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Medical Information</h3>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Medical Details</label>
+                            <textarea id="editMedicalDetails" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm px-4 py-2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" onclick="closeEditModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md">
+                            Update Client
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Dashboard Modal -->
     <div id="dashboardModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-xl max-w-6xl w-full mx-4 max-h-screen overflow-y-auto">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                 <h2 class="text-xl font-bold text-gray-900">Client Submissions Dashboard</h2>
-                <button onclick="closeDashboard()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6m0 0L6 6m12 12"></path>
-                    </svg>
-                </button>
+                <div class="flex items-center space-x-3">
+                    <button onclick="logoutDashboard()" class="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+                        Logout
+                    </button>
+                    <button onclick="closeDashboard()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6m0 0L6 6m12 12"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <div class="p-6">
                 <div id="dashboardContent">
@@ -464,12 +583,152 @@
         }
 
         function showDashboard() {
-            document.getElementById('dashboardModal').classList.remove('hidden');
-            loadDashboardData();
+            // Check if already authenticated
+            if (sessionStorage.getItem('dashboardAuthenticated') === 'true') {
+                document.getElementById('dashboardModal').classList.remove('hidden');
+                loadDashboardData();
+            } else {
+                showLoginPrompt();
+            }
         }
 
         function closeDashboard() {
             document.getElementById('dashboardModal').classList.add('hidden');
+        }
+
+        // Authentication functions
+        function showLoginPrompt() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('loginError').classList.add('hidden');
+            document.getElementById('dashboardPassword').value = '';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function authenticateDashboard() {
+            const password = document.getElementById('dashboardPassword').value;
+            const correctPassword = 'FusionSC2024!'; // Change this to your desired password
+            
+            if (password === correctPassword) {
+                // Store authentication in session
+                sessionStorage.setItem('dashboardAuthenticated', 'true');
+                
+                // Close login modal and show dashboard
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('dashboardModal').classList.remove('hidden');
+                loadDashboardData();
+            } else {
+                // Show error message
+                document.getElementById('loginError').classList.remove('hidden');
+                document.getElementById('dashboardPassword').value = '';
+            }
+        }
+
+        // Logout function
+        function logoutDashboard() {
+            sessionStorage.removeItem('dashboardAuthenticated');
+            document.getElementById('dashboardModal').classList.add('hidden');
+        }
+
+        // CRUD Functions
+        let currentEditingClientId = null;
+
+        // Edit Client
+        async function editClient(clientId) {
+            try {
+                // Fetch client data
+                const { data, error } = await supabaseClient
+                    .from('client_questionnaires')
+                    .select('*')
+                    .eq('id', clientId)
+                    .single();
+
+                if (error) throw error;
+
+                // Populate edit form
+                document.getElementById('editFirstName').value = data.first_name || '';
+                document.getElementById('editLastName').value = data.last_name || '';
+                document.getElementById('editEmail').value = data.email || '';
+                document.getElementById('editDateOfBirth').value = data.date_of_birth || '';
+                document.getElementById('editGender').value = data.gender || '';
+                document.getElementById('editFitnessLevel').value = data.fitness_level || '';
+                document.getElementById('editCurrentActivities').value = data.current_activities || '';
+                document.getElementById('editExerciseHistory').value = data.exercise_history || '';
+                document.getElementById('editGoals').value = data.goals || '';
+                document.getElementById('editMedicalDetails').value = data.medical_details || '';
+
+                currentEditingClientId = clientId;
+                document.getElementById('editClientModal').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error fetching client data:', error);
+                alert('Error loading client data: ' + error.message);
+            }
+        }
+
+        // Close Edit Modal
+        function closeEditModal() {
+            document.getElementById('editClientModal').classList.add('hidden');
+            currentEditingClientId = null;
+        }
+
+        // Update Client
+        document.getElementById('editClientForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!currentEditingClientId) return;
+
+            try {
+                const updateData = {
+                    first_name: document.getElementById('editFirstName').value,
+                    last_name: document.getElementById('editLastName').value,
+                    email: document.getElementById('editEmail').value,
+                    date_of_birth: document.getElementById('editDateOfBirth').value,
+                    gender: document.getElementById('editGender').value,
+                    fitness_level: parseInt(document.getElementById('editFitnessLevel').value) || null,
+                    current_activities: document.getElementById('editCurrentActivities').value,
+                    exercise_history: document.getElementById('editExerciseHistory').value,
+                    goals: document.getElementById('editGoals').value,
+                    medical_details: document.getElementById('editMedicalDetails').value
+                };
+
+                const { error } = await supabaseClient
+                    .from('client_questionnaires')
+                    .update(updateData)
+                    .eq('id', currentEditingClientId);
+
+                if (error) throw error;
+
+                alert('Client updated successfully!');
+                closeEditModal();
+                loadDashboardData(); // Refresh dashboard
+            } catch (error) {
+                console.error('Error updating client:', error);
+                alert('Error updating client: ' + error.message);
+            }
+        });
+
+        // Delete Client
+        async function deleteClient(clientId) {
+            if (!confirm('Are you sure you want to delete this client? This action cannot be undone.')) {
+                return;
+            }
+
+            try {
+                const { error } = await supabaseClient
+                    .from('client_questionnaires')
+                    .delete()
+                    .eq('id', clientId);
+
+                if (error) throw error;
+
+                alert('Client deleted successfully!');
+                loadDashboardData(); // Refresh dashboard
+            } catch (error) {
+                console.error('Error deleting client:', error);
+                alert('Error deleting client: ' + error.message);
+            }
         }
 
         // Dashboard functionality
@@ -600,9 +859,17 @@
                                 
                                 <div class="mt-4 pt-3 border-t border-gray-200 flex justify-between items-center">
                                     <span class="text-xs text-gray-500">Submission ID: ${submission.id}</span>
-                                    <button onclick="exportClientData(${index})" class="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">
-                                        Export Data
-                                    </button>
+                                    <div class="flex space-x-2">
+                                        <button onclick="editClient(${submission.id})" class="text-sm bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 rounded">
+                                            Edit
+                                        </button>
+                                        <button onclick="deleteClient(${submission.id})" class="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+                                            Delete
+                                        </button>
+                                        <button onclick="exportClientData(${index})" class="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">
+                                            Export
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
