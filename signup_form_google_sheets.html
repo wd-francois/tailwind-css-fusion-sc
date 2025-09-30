@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fusion SC - Personal Training Studio, Mobile Personal Trainer, Online Personal Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Supabase JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.38.0/umd/index.min.js"></script>
 </head>
 <header class="bg-black">
     <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
@@ -18,7 +16,6 @@
             <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="index.html">Home</a>
             <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="services.html">Services</a>
             <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="contact.html">Contact</a>
-            <a class="text-white mr-5 cursor-pointer border-b border-transparent hover:border-yellow-300 font-bold" href="#" onclick="showDashboard()">Dashboard</a>
         </nav>
     </div>  
 </header>
@@ -70,25 +67,6 @@
         </div>
     </div>
 
-    <!-- Dashboard Modal -->
-    <div id="dashboardModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-lg shadow-xl max-w-6xl w-full mx-4 max-h-screen overflow-y-auto">
-            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                <h2 class="text-xl font-bold text-gray-900">Client Submissions Dashboard</h2>
-                <button onclick="closeDashboard()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6m0 0L6 6m12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="p-6">
-                <div id="dashboardContent">
-                    <p class="text-gray-500">Loading submissions...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Form Container -->
     <div id="formContainer" class="min-h-screen py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
@@ -99,7 +77,7 @@
                         <p class="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600">Please complete this form to help us understand your fitness needs and medical history</p>
                     </div>
 
-                    <form id="questionnaireForm" class="space-y-6 sm:space-y-8">
+                    <form id="questionnaireForm" name="questionnaireForm" class="space-y-6 sm:space-y-8">
                         <!-- Disclaimer -->
                         <div class="bg-red-50 border-l-4 border-red-500 p-4 sm:p-6 mb-6 sm:mb-8 rounded-lg">
                             <div class="flex items-start">
@@ -365,15 +343,9 @@
     </div>
 
     <script>
-        // Initialize Supabase
-        // Replace these with your actual Supabase project details
-        // 1. Go to https://app.supabase.com
-        // 2. Select your project → Settings → API
-        // 3. Copy your Project URL and anon/public key
-        const SUPABASE_URL = 'https://gkskrzhfnsohtsjrnyxd.supabase.co'; // Your actual Supabase URL
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdrc2tyemhmbnNvaHRzanJueXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5Nzg0MTQsImV4cCI6MjA3MjU1NDQxNH0.gzaDPeFzIBu8H7b7-DRcCjn-wyk5nctHsS-sfVYkxaY'; // Your actual anon key
-        
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Google Sheets configuration
+        // Replace this URL with your Google Apps Script web app URL
+        const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
 
         // Form submission handler
         document.getElementById('questionnaireForm').addEventListener('submit', async (e) => {
@@ -386,63 +358,28 @@
                 // Collect form data
                 const formData = new FormData(e.target);
                 
-                // Prepare data for insertion
-                const submissionData = {
-                    // Personal Information
-                    first_name: formData.get('first-name'),
-                    last_name: formData.get('last-name'),
-                    date_of_birth: formData.get('date-of-birth'),
-                    gender: formData.get('gender'),
-                    email: formData.get('email'),
-                    
-                    // Medical Conditions (as JSON)
-                    medical_conditions: {
-                        heart_condition: formData.has('heart-condition'),
-                        chest_discomfort: formData.has('chest-discomfort'),
-                        asthma: formData.has('asthma'),
-                        diabetic: formData.has('diabetic'),
-                        dizziness: formData.has('dizziness'),
-                        pregnant: formData.has('pregnant'),
-                        epilepsy: formData.has('epilepsy'),
-                        medication: formData.has('medication'),
-                        smoke: formData.has('smoke'),
-                        injury: formData.has('injury')
-                    },
-                    medical_details: formData.get('medical-details') || '',
-                    
-                    // Fitness Information
-                    fitness_level: parseInt(formData.get('fitness-level')) || null,
-                    current_activities: formData.get('current-activities') || '',
-                    exercise_history: formData.get('exercise-history') || '',
-                    trainer_experience: formData.get('trainer-experience') || '',
-                    
-                    // Goals
-                    goals: formData.get('goals') || '',
-                    timeframe: formData.get('timeframe') || '',
-                    importance: parseInt(formData.get('importance')) || null,
-                    
-                    // Agreement
-                    agreement_accepted: formData.has('agreement'),
-                    
-                    // Metadata
-                    submitted_at: new Date().toISOString()
-                };
+                // Submit to Google Sheets
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                });
                 
-                // Insert data into Supabase
-                const { data, error } = await supabase
-                    .from('client_questionnaires')
-                    .insert([submissionData]);
-                
-                if (error) {
-                    throw error;
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                // Hide loading and show success
-                document.getElementById('loadingOverlay').classList.add('hidden');
-                document.getElementById('successMessage').classList.remove('hidden');
+                const result = await response.json();
                 
-                // Reset form
-                e.target.reset();
+                if (result.result === 'success') {
+                    // Hide loading and show success
+                    document.getElementById('loadingOverlay').classList.add('hidden');
+                    document.getElementById('successMessage').classList.remove('hidden');
+                    
+                    // Reset form
+                    e.target.reset();
+                } else {
+                    throw new Error(result.message || 'Unknown error occurred');
+                }
                 
             } catch (error) {
                 console.error('Error submitting form:', error);
@@ -463,250 +400,19 @@
             document.getElementById('errorMessage').classList.add('hidden');
         }
 
-        function showDashboard() {
-            document.getElementById('dashboardModal').classList.remove('hidden');
-            loadDashboardData();
-        }
-
-        function closeDashboard() {
-            document.getElementById('dashboardModal').classList.add('hidden');
-        }
-
-        // Dashboard functionality
-        async function loadDashboardData() {
-            const dashboardContent = document.getElementById('dashboardContent');
-            dashboardContent.innerHTML = '<p class="text-gray-500">Loading submissions...</p>';
-            
-            try {
-                // Fetch all submissions from Supabase
-                const { data, error } = await supabase
-                    .from('client_questionnaires')
-                    .select('*')
-                    .order('submitted_at', { ascending: false });
-                
-                if (error) {
-                    throw error;
-                }
-                
-                if (!data || data.length === 0) {
-                    dashboardContent.innerHTML = '<p class="text-gray-500">No submissions found.</p>';
-                    return;
-                }
-                
-                // Generate dashboard HTML
-                let html = `
-                    <div class="mb-4">
-                        <p class="text-sm text-gray-600">Total Submissions: <span class="font-semibold">${data.length}</span></p>
-                    </div>
-                    <div class="space-y-6">
-                `;
-                
-                data.forEach((submission, index) => {
-                    const submittedDate = new Date(submission.submitted_at).toLocaleDateString();
-                    const medicalConditions = submission.medical_conditions || {};
-                    const activeConditions = Object.entries(medicalConditions)
-                        .filter(([key, value]) => value)
-                        .map(([key]) => key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()));
-                    
-                    html += `
-                        <div class="bg-gray-50 rounded-lg p-4 border">
-                            <div class="flex justify-between items-start mb-3">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">
-                                        ${submission.first_name} ${submission.last_name}
-                                    </h3>
-                                    <p class="text-sm text-gray-600">${submission.email}</p>
-                                    <p class="text-sm text-gray-500">Submitted: ${submittedDate}</p>
-                                </div>
-                                <button onclick="toggleDetails(${index})" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                                    <span id="toggle-text-${index}">View Details</span>
-                                </button>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
-                                <div>
-                                    <span class="text-sm font-medium text-gray-700">Age:</span>
-                                    <span class="text-sm text-gray-600 ml-1">${calculateAge(submission.date_of_birth)} years</span>
-                                </div>
-                                <div>
-                                    <span class="text-sm font-medium text-gray-700">Fitness Level:</span>
-                                    <span class="text-sm text-gray-600 ml-1">${submission.fitness_level || 'Not specified'}/10</span>
-                                </div>
-                                <div>
-                                    <span class="text-sm font-medium text-gray-700">Goal Importance:</span>
-                                    <span class="text-sm text-gray-600 ml-1">${submission.importance || 'Not specified'}/10</span>
-                                </div>
-                            </div>
-                            
-                            ${activeConditions.length > 0 ? `
-                                <div class="mb-3">
-                                    <span class="text-sm font-medium text-red-700">Medical Conditions:</span>
-                                    <div class="flex flex-wrap gap-1 mt-1">
-                                        ${activeConditions.map(condition => 
-                                            `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">${condition}</span>`
-                                        ).join('')}
-                                    </div>
-                                </div>
-                            ` : ''}
-                            
-                            <div id="details-${index}" class="hidden mt-4 pt-4 border-t border-gray-200">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="space-y-3">
-                                        <div>
-                                            <h4 class="text-sm font-semibold text-gray-900 mb-1">Personal Information</h4>
-                                            <p class="text-sm text-gray-600">DOB: ${new Date(submission.date_of_birth).toLocaleDateString()}</p>
-                                            <p class="text-sm text-gray-600">Gender: ${submission.gender}</p>
-                                        </div>
-                                        
-                                        ${submission.medical_details ? `
-                                            <div>
-                                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Additional Medical Info</h4>
-                                                <p class="text-sm text-gray-600 bg-white p-2 rounded border">${submission.medical_details}</p>
-                                            </div>
-                                        ` : ''}
-                                        
-                                        ${submission.current_activities ? `
-                                            <div>
-                                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Current Activities</h4>
-                                                <p class="text-sm text-gray-600 bg-white p-2 rounded border">${submission.current_activities}</p>
-                                            </div>
-                                        ` : ''}
-                                    </div>
-                                    
-                                    <div class="space-y-3">
-                                        ${submission.goals ? `
-                                            <div>
-                                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Fitness Goals</h4>
-                                                <p class="text-sm text-gray-600 bg-white p-2 rounded border">${submission.goals}</p>
-                                                ${submission.timeframe ? `<p class="text-sm text-gray-500 mt-1">Timeframe: ${submission.timeframe}</p>` : ''}
-                                            </div>
-                                        ` : ''}
-                                        
-                                        ${submission.exercise_history ? `
-                                            <div>
-                                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Exercise History</h4>
-                                                <p class="text-sm text-gray-600 bg-white p-2 rounded border">${submission.exercise_history}</p>
-                                            </div>
-                                        ` : ''}
-                                        
-                                        ${submission.trainer_experience ? `
-                                            <div>
-                                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Previous Trainer Experience</h4>
-                                                <p class="text-sm text-gray-600 bg-white p-2 rounded border">${submission.trainer_experience}</p>
-                                            </div>
-                                        ` : ''}
-                                    </div>
-                                </div>
-                                
-                                <div class="mt-4 pt-3 border-t border-gray-200 flex justify-between items-center">
-                                    <span class="text-xs text-gray-500">Submission ID: ${submission.id}</span>
-                                    <button onclick="exportClientData(${index})" class="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">
-                                        Export Data
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                html += '</div>';
-                dashboardContent.innerHTML = html;
-                
-                // Store data globally for export functionality
-                window.dashboardData = data;
-                
-            } catch (error) {
-                console.error('Error loading dashboard:', error);
-                dashboardContent.innerHTML = `<p class="text-red-500">Error loading data: ${error.message}</p>`;
-            }
-        }
-
-        // Helper functions
-        function calculateAge(dateOfBirth) {
-            const today = new Date();
-            const birthDate = new Date(dateOfBirth);
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const monthDiff = today.getMonth() - birthDate.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            
-            return age;
-        }
-
-        function toggleDetails(index) {
-            const details = document.getElementById(`details-${index}`);
-            const toggleText = document.getElementById(`toggle-text-${index}`);
-            
-            if (details.classList.contains('hidden')) {
-                details.classList.remove('hidden');
-                toggleText.textContent = 'Hide Details';
-            } else {
-                details.classList.add('hidden');
-                toggleText.textContent = 'View Details';
-            }
-        }
-
-        function exportClientData(index) {
-            if (!window.dashboardData || !window.dashboardData[index]) {
-                alert('No data available for export');
-                return;
-            }
-            
-            const client = window.dashboardData[index];
-            
-            // Create CSV content
-            let csvContent = "Field,Value\n";
-            csvContent += `Name,"${client.first_name} ${client.last_name}"\n`;
-            csvContent += `Email,"${client.email}"\n`;
-            csvContent += `Date of Birth,"${client.date_of_birth}"\n`;
-            csvContent += `Gender,"${client.gender}"\n`;
-            csvContent += `Age,"${calculateAge(client.date_of_birth)} years"\n`;
-            csvContent += `Fitness Level,"${client.fitness_level || 'Not specified'}"\n`;
-            csvContent += `Goal Importance,"${client.importance || 'Not specified'}"\n`;
-            csvContent += `Goals,"${client.goals || 'Not specified'}"\n`;
-            csvContent += `Timeframe,"${client.timeframe || 'Not specified'}"\n`;
-            csvContent += `Current Activities,"${client.current_activities || 'Not specified'}"\n`;
-            csvContent += `Exercise History,"${client.exercise_history || 'Not specified'}"\n`;
-            csvContent += `Trainer Experience,"${client.trainer_experience || 'Not specified'}"\n`;
-            csvContent += `Medical Details,"${client.medical_details || 'None provided'}"\n`;
-            csvContent += `Submitted Date,"${new Date(client.submitted_at).toLocaleString()}"\n`;
-            
-            // Add medical conditions
-            const conditions = client.medical_conditions || {};
-            Object.entries(conditions).forEach(([key, value]) => {
-                if (value) {
-                    const conditionName = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                    csvContent += `Medical Condition - ${conditionName},"Yes"\n`;
-                }
-            });
-            
-            // Create and download file
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', `${client.first_name}_${client.last_name}_questionnaire.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if Supabase is configured
-            if (SUPABASE_URL.includes('YOUR_PROJECT') || SUPABASE_ANON_KEY.includes('YOUR_ANON_KEY')) {
-                console.warn('Supabase not configured. Please update the SUPABASE_URL and SUPABASE_ANON_KEY variables.');
+            // Check if Google Sheets is configured
+            if (scriptURL.includes('YOUR_SCRIPT_ID')) {
+                console.warn('Google Sheets not configured. Please update the scriptURL variable.');
                 
                 // Show configuration message
                 const configMessage = document.createElement('div');
                 configMessage.className = 'fixed top-0 left-0 right-0 bg-yellow-100 border-b-2 border-yellow-300 p-4 z-40';
                 configMessage.innerHTML = `
                     <div class="max-w-3xl mx-auto text-center">
-                        <p class="text-yellow-800 font-medium">⚠️ Supabase Configuration Required</p>
-                        <p class="text-yellow-700 text-sm">Please update your Supabase URL and API key to enable form submissions.</p>
+                        <p class="text-yellow-800 font-medium">⚠️ Google Sheets Configuration Required</p>
+                        <p class="text-yellow-700 text-sm">Please update your Google Apps Script URL to enable form submissions.</p>
                     </div>
                 `;
                 document.body.prepend(configMessage);
@@ -728,5 +434,3 @@
     </style>
 </body>
 </html>
-
-
